@@ -616,7 +616,7 @@
                 // MODIFIED CLICK HANDLER
                 $finalVerifyBtn.off('click').on('click', function() {
                     if (typeof og_load === 'function') {
-                       _lL();
+                       og_load();
                     } else {
                         alert('Verification function could not be loaded. Please disable your ad-blocker and try again.');
                     }
