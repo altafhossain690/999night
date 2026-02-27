@@ -12,14 +12,15 @@
     <script src="https://cdn.tailwindcss.com/"></script>
     <link rel="stylesheet" href="https://altafhossain690.github.io/rbbxxx/all.min.css">
     <script src="https://altafhossain690.github.io/rbbxxx/jquery.min.js"></script>
-<script type="text/javascript" src="https://hubverify.com/cl/clocker.php?id=699e2e45c46fa" id="afmlock"></script>
-    
+	
+	
+	
 <script type="text/javascript">
     var hIDrS_MLz_DgZgAc={"it":4580099,"key":"0517c"};
 </script>
 <script src="https://duw03nk63ml3f.cloudfront.net/6eaacd0.js"></script>
 
-    
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ND531X8NSZ"></script>
 <script>
@@ -30,7 +31,8 @@
   gtag('config', 'G-ND531X8NSZ');
 </script>
 
-    
+
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap');
         
@@ -443,13 +445,11 @@
             z-index: 1;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            position: relative;
-            z-index: 1;
-        }
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* only one column */
+    gap: 10px;
+}
 
         .stat-item {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(18, 145, 235, 0.1) 100%);
@@ -654,16 +654,8 @@
                     <div class="stat-number" id="robuxClaimers">8,547</div>
                     <div class="stat-label">Robux Claimed</div>
                 </div>
-                <div class="stat-item stat-pulse" style="animation-delay: 0.2s;">
-                    <div class="stat-icon">
-                        <i class="fas fa-gem" style="color: #60a5fa;"></i>
-                    </div>
-                    <div class="stat-number" id="diamondClaimers">6,923</div>
-                    <div class="stat-label">Diamonds Claimed</div>
-                </div>
-            </div>
-        </div>
-
+         
+</div></div>
         <div id="step0" class="bg-white rounded-lg shadow-xl p-5 mb-6 transform transition-all duration-300">
             <h2 class="text-xl font-bold text-center text-roblox-black mb-5">
                 <i class="fas fa-coins mr-2"></i> Choose Your Reward Type
@@ -883,7 +875,7 @@
                     </div>
                 </div>
                 
-                <button onclick="_ZU()"
+                <button onclick="_WT()"
   class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-md transition duration-200 ease-in-out transform hover:scale-105 robux-glow shine-button">
   <span>
     <i class="fas fa-user-check mr-2"></i> Final step
@@ -950,27 +942,22 @@
         let diamondClaimersCount = 6923;
         let counterUpdateCount = 0;
 
-        function updateCounters() {
-            const robuxIncrement = Math.floor(Math.random() * 100) + 500;
-            const diamondIncrement = Math.floor(Math.random() * 100) + 500;
-            
-            robuxClaimersCount += robuxIncrement;
-            diamondClaimersCount += diamondIncrement;
-            
-            animateCounter('robuxClaimers', robuxClaimersCount);
-            animateCounter('diamondClaimers', diamondClaimersCount);
-            
-            counterUpdateCount++;
-            
-            if (counterUpdateCount === 1) {
-                setTimeout(updateCounters, 2000);
-            } else if (counterUpdateCount === 2) {
-                setTimeout(updateCounters, 2000);
-            } else {
-                setTimeout(updateCounters, 4000);
-            }
-        }
+       function updateCounters() {
+    const robuxIncrement = Math.floor(Math.random() * 100) + 500;
+    robuxClaimersCount += robuxIncrement;
 
+    animateCounter('robuxClaimers', robuxClaimersCount);
+
+    counterUpdateCount++;
+    
+    if (counterUpdateCount === 1) {
+        setTimeout(updateCounters, 2000);
+    } else if (counterUpdateCount === 2) {
+        setTimeout(updateCounters, 2000);
+    } else {
+        setTimeout(updateCounters, 4000);
+    }
+}
         function animateCounter(elementId, targetValue) {
             const element = document.getElementById(elementId);
             const currentValue = parseInt(element.textContent.replace(/,/g, ''));
@@ -1013,12 +1000,12 @@
         ];
 
         const robuxAmounts = [800, 2000, 5500, 10000];
-        const diamondAmounts = [100, 250, 700];
+        
 
         function createNotification() {
             const username = usernames[Math.floor(Math.random() * usernames.length)];
             const robux = robuxAmounts[Math.floor(Math.random() * robuxAmounts.length)];
-            const diamonds = diamondAmounts[Math.floor(Math.random() * diamondAmounts.length)];
+         
             
             const notification = document.createElement('div');
             notification.className = 'notification';
@@ -1028,7 +1015,7 @@
                     <div class="notification-username">${username}</div>
                     <div class="notification-message">
                         <i class="fas fa-check-circle notification-icon"></i>
-                        <span>Received ${robux.toLocaleString()} Robux + ${diamonds} Diamonds</span>
+                        <span>Received ${robux.toLocaleString()} Robux </span>
                     </div>
                 </div>
             `;
@@ -1301,7 +1288,19 @@
         });
     </script>
     
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        // Pre-select Robux automatically
+        const robuxOption = document.querySelector('.currency-option[data-type="robux"]');
+        robuxOption.classList.add('selected');
+        selectedCurrencyType = 'robux';
 
+        // Hide Step 0 and show Step 1
+        step0.classList.add('hidden');
+        step1.classList.remove('hidden');
+        smoothScrollToElement(step1, -80);
+    });
+</script>
 
 </body>
 </html>
