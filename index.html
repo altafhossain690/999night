@@ -1,12 +1,10 @@
 
 <!DOCTYPE html>
-<html lang="ar" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Target Exclusive Offer – $750</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Target $750</title>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-17ZJNVGZ7F"></script>
 <script>
@@ -16,399 +14,221 @@
 
   gtag('config', 'G-17ZJNVGZ7F');
 </script>
-  
-  
-  
-  <style>
-    :root {
-      --target-red: #CC0000;
-      --target-red-dark: #A50000;
-      --white: #FFFFFF;
-      --off-white: #F7F7F7;
-      --light-gray: #EBEBEB;
-      --mid-gray: #767676;
-      --dark: #1A1A1A;
-      --green-verified: #2E7D32;
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#efebe7;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:560px;
+    border-radius:28px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.top{
+    background:#e10012;
+    color:#fff;
+    text-align:center;
+    padding:40px 20px 55px;
+}
+
+.logo{
+    width:82px;
+    height:82px;
+    border:8px solid #fff;
+    border-radius:50%;
+    margin:0 auto 20px;
+    position:relative;
+}
+
+.logo::before{
+    content:"";
+    position:absolute;
+    inset:13px;
+    border:8px solid #fff;
+    border-radius:50%;
+}
+
+.logo::after{
+    content:"";
+    width:18px;
+    height:18px;
+    background:#fff;
+    border-radius:50%;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+.amount{
+    font-size:84px;
+    font-weight:800;
+    line-height:1;
+}
+
+.subtitle{
+    margin-top:12px;
+    font-size:20px;
+    text-transform:uppercase;
+}
+
+.content{
+    background:#f3f3f3;
+    padding:35px 28px 40px;
+    border-radius:32px 32px 0 0;
+    margin-top:-22px;
+}
+
+.step{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:22px;
+}
+
+.number{
+    min-width:52px;
+    width:52px;
+    height:52px;
+    background:#e10012;
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.step-text{
+    font-size:18px;
+    color:#223a63;
+    font-weight:500;
+}
+
+.btn{
+    width:100%;
+    margin-top:25px;
+    border:none;
+    background:#e10012;
+    color:#fff;
+    font-size:22px;
+    font-weight:700;
+    padding:18px;
+    border-radius:50px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+@media (max-width:600px){
+
+    .card{
+        max-width:100%;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--off-white);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+    .top{
+        padding:30px 15px 45px;
     }
 
-    .page-wrapper {
-      width: 100%;
-      max-width: 420px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+    .logo{
+        width:70px;
+        height:70px;
     }
 
-    /* ── Floating Toast ── */
-    .toast {
-      position: fixed;
-      top: 18px;
-      right: 18px;
-      z-index: 9999;
-      background: var(--white);
-      border-radius: 14px;
-      padding: 10px 13px;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      box-shadow: 0 6px 28px rgba(0,0,0,0.14);
-      max-width: 270px;
-      width: calc(100vw - 36px);
-      opacity: 0;
-      transform: translateX(30px);
-      transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1),
-                  transform 0.35s cubic-bezier(0.22,1,0.36,1);
-      pointer-events: none;
-    }
-    .toast.show { opacity: 1; transform: translateX(0); pointer-events: auto; }
-    .toast.hide { opacity: 0; transform: translateX(30px); }
-
-    .toast-icon {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, #fff5e6, #ffe0b2);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-    .toast-body { flex: 1; min-width: 0; }
-    .toast-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: var(--target-red);
-      color: var(--white);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      padding: 2px 7px;
-      border-radius: 20px;
-      margin-bottom: 3px;
-    }
-    .toast-badge span { font-size: 10px; }
-    .toast-text {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--dark);
-      line-height: 1.35;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .toast-text strong { color: var(--target-red); }
-    .toast-meta {
-      font-size: 10px;
-      color: var(--mid-gray);
-      margin-top: 2px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .toast-meta::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--green-verified);
-      border-radius: 50%;
-      display: inline-block;
-      flex-shrink: 0;
+    .amount{
+        font-size:58px;
     }
 
-    /* ── Main card ── */
-    .card {
-      background: var(--white);
-      border-radius: 24px;
-      padding: 36px 28px 32px;
-      box-shadow: 0 8px 40px rgba(204,0,0,0.08), 0 2px 12px rgba(0,0,0,0.06);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: fadeUp 0.7s 0.1s cubic-bezier(0.22,1,0.36,1) both;
-      position: relative;
-      overflow: hidden;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--target-red);
-      border-radius: 24px 24px 0 0;
+    .subtitle{
+        font-size:16px;
     }
 
-    /* ── Logo ── */
-    .logo-wrap { margin-bottom: 22px; }
-    .bullseye { width: 80px; height: 80px; }
-    .bullseye svg {
-      width: 100%; height: 100%;
-      filter: drop-shadow(0 4px 14px rgba(204,0,0,0.30));
-      animation: pulse 2.4s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50%       { transform: scale(1.05); }
+    .content{
+        padding:25px 18px 30px;
     }
 
-    /* ── Badge ── */
-    .exclusive-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      border: 1.5px solid var(--dark);
-      background: var(--dark);
-      color: var(--white);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      padding: 6px 16px;
-      border-radius: 30px;
-      margin-bottom: 20px;
-    }
-    .exclusive-badge .dot {
-      width: 8px; height: 8px;
-      background: var(--green-verified);
-      border-radius: 50%;
-      animation: blink 1.2s ease-in-out infinite;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.2; }
+    .number{
+        width:45px;
+        height:45px;
+        min-width:45px;
+        font-size:22px;
     }
 
-    /* ── Headline ── */
-    .headline {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(26px, 7vw, 32px);
-      font-weight: 900;
-      color: var(--dark);
-      text-align: center;
-      line-height: 1.2;
-      margin-bottom: 14px;
-    }
-    .headline .amount { color: var(--target-red); }
-
-    /* ── Sub-text ── */
-    .sub-text {
-      font-size: 15px;
-      color: var(--mid-gray);
-      text-align: center;
-      line-height: 1.55;
-      max-width: 300px;
-      margin-bottom: 24px;
+    .step-text{
+        font-size:16px;
     }
 
-    /* ── Steps ── */
-    .steps {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 28px;
+    .btn{
+        font-size:18px;
+        padding:16px;
     }
-    .step {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: var(--off-white);
-      border-radius: 12px;
-      padding: 12px 16px;
-      border-left: 3px solid var(--target-red);
-    }
-    .step-num {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-      font-weight: 900;
-      color: var(--target-red);
-      letter-spacing: 0.04em;
-      flex-shrink: 0;
-      min-width: 26px;
-    }
-    .step-text {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1.4;
-    }
-    .step-text strong { color: var(--target-red); }
-
-    /* ── CTA Button ── */
-    .cta-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 18px 24px;
-      background: var(--target-red);
-      color: var(--white);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 17px;
-      font-weight: 800;
-      letter-spacing: 0.03em;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 6px 24px rgba(204,0,0,0.35);
-      margin-bottom: 28px;
-    }
-    .cta-btn:hover {
-      background: var(--target-red-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 32px rgba(204,0,0,0.45);
-    }
-    .cta-btn:active { transform: translateY(0); }
-    .cta-arrow { font-size: 20px; transition: transform 0.2s; }
-    .cta-btn:hover .cta-arrow { transform: translateX(4px); }
-
-    /* ── Trust bar ── */
-    .trust-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding-top: 20px;
-      border-top: 1px solid var(--light-gray);
-    }
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--mid-gray);
-    }
-    .trust-item .icon-target { width: 18px; height: 18px; }
-
-    /* ── Responsive ── */
-    @media (max-width: 380px) {
-      .card { padding: 28px 18px 24px; }
-      .headline { font-size: 24px; }
-    }
-    @media (min-width: 768px) {
-      body { background: #e8e8e8; }
-      .page-wrapper { max-width: 440px; }
-      .card { padding: 44px 40px 38px; }
-    }
-  </style>
+}
+</style>
 </head>
 <body>
 
-<div class="page-wrapper">
+<div class="card">
 
-  <!-- Floating Toast -->
-  <div class="toast" id="toast">
-    <div class="toast-icon">&#127873;</div>
-    <div class="toast-body">
-      <div class="toast-badge">&#128293; JUST CLAIMED <span>$750</span></div>
-      <p class="toast-text" id="toast-text"><strong>Joseph D.</strong> redeemed <strong>$750</strong> Target coupon!</p>
-      <div class="toast-meta">just now &nbsp;&bull;&nbsp; coupon active</div>
-    </div>
-  </div>
+    <div class="top">
+        <div class="logo"></div>
 
-  <!-- Main Card -->
-  <div class="card">
+        <div class="amount">$750</div>
 
-    <!-- Bullseye -->
-    <div class="logo-wrap">
-      <div class="bullseye">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="48" fill="#CC0000"/>
-          <circle cx="50" cy="50" r="36" fill="white"/>
-          <circle cx="50" cy="50" r="24" fill="#CC0000"/>
-          <circle cx="50" cy="50" r="12" fill="white"/>
-        </svg>
-      </div>
+        <div class="subtitle">
+            TARGET REWARD
+        </div>
     </div>
 
-    <!-- Badge -->
+    <div class="content">
 
+        <div class="step">
+            <div class="number">1</div>
+            <div class="step-text">Click The Button Below</div>
+        </div>
 
-    <!-- Headline -->
-    <h1 class="headline">
-      Get a <span class="amount">$750</span> Target<br>Discount Today
-    </h1>
+        <div class="step">
+            <div class="number">2</div>
+            <div class="step-text">Enter Your Basic Info</div>
+        </div>
 
+        <div class="step">
+            <div class="number">3</div>
+            <div class="step-text">Complete 4-5 Deals</div>
+        </div>
 
-    <!-- Steps -->
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-text">Tap <strong>&quot;Start now&quot;</strong> below</div>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-text">Verify your email &amp; details</div>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-text">Complete 3&ndash;5 sponsored deals</div>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div class="step-text">Receive your coupon</div>
-      </div>
+        <div class="step">
+            <div class="number">4</div>
+            <div class="step-text">Claim Your Reward</div>
+        </div>
+
+        <button class="btn"
+        onclick="window.location.href='https://trksy.org/aff_c?offer_id=250&aff_id=164975'">
+            CLAIM
+        </button>
+
     </div>
-
-    <!-- CTA -->
-    <a href="https://trksy.org/aff_c?offer_id=250&aff_id=164975" target="_blank" class="cta-btn">Start now</a>
-
-    <!-- Trust Bar -->
-    <div class="trust-bar">
-      <div class="trust-item">
-        Sponsored deals completion required for eligibility.
-      </div>
-    </div>
-
-  </div>
 
 </div>
 
-<script>
-  var names = [
-    "Emily R.","James T.","Sophia L.","Liam K.","Olivia M.",
-    "Noah B.","Ava C.","Ethan W.","Isabella H.","Mason D.",
-    "Mia S.","Logan P.","Charlotte F.","Lucas N.","Amelia J.",
-    "Aiden G.","Harper V.","Jackson Z.","Evelyn Q.","Carter Y.",
-    "Abigail X.","Sebastian U.","Ella O.","Matthew I.","Scarlett A.",
-    "Henry E.","Grace R.","Alexander T.","Chloe L.","Daniel K."
-  ];
-  var toast    = document.getElementById('toast');
-  var toastTxt = document.getElementById('toast-text');
-  var idx = 0;
-
-  function showToast() {
-    var name = names[idx % names.length];
-    idx++;
-    toastTxt.innerHTML = '<strong>' + name + '</strong> redeemed <strong>$750</strong> Target coupon!';
-    toast.classList.remove('hide');
-    toast.classList.add('show');
-    setTimeout(function() {
-      toast.classList.remove('show');
-      toast.classList.add('hide');
-      setTimeout(showToast, 400 + 3000);
-    }, 3000);
-  }
-
-  setTimeout(showToast, 800);
-</script>
 </body>
 </html>
